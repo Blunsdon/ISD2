@@ -18,7 +18,7 @@ void main (void){
 	volatile uint32_t wave_in;
 	// Use the first place in shared memory
 	volatile uint32_t * shared_mem = (unsigned int *) 0x00010000;
-	// mask given here
+	// Pin mask
 	wave_in = 0x0800; // P1_04 (pru1) r31.11=> 800	
 	// loop
 	while(1){
