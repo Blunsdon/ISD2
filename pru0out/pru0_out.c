@@ -1,4 +1,10 @@
-
+ /*
+ * Name		: pru0_out
+ * Author	: Marc David Jensen Blunsdon
+ * Version	: 1.0
+ * Copyright	: Free for all
+ * Description	: checks value from shared memory the value sent to output pin
+ */
 
 #include <stdint.h>
 #include <pru_cfg.h>
@@ -12,19 +18,16 @@ void main (void){
 	volatile uint32_t wave_out;
 	
 	// Use first place in shared memory
-	volatile uint32_t * R28 = (unsigned int *) 0x00010000;
+	volatile uint32_t * shared_mem = (unsigned int *) 0x00010000;
     
-	//  Pin address given here (P2_24 (pru0) r30.14=> 4000)
+	//  Pin mask here (P2_24 (pru0) r30.14=> 4000)
 	wave_out = 0x4000;
-    
-	// Clear SYSCFG[STANDBY_INIT] to enable OCP master port
-	CT_CFG.SYSCFG_bit.STANDBY_INIT = 0;
     
 	// loop
     
 	while(1){
 		// check if shared memory is 1 or 0
-		if(R28[0]){
+		if(shared_mem[0]){
 			// Set pin
 			__R30 |= wave_out;
 		}else{
