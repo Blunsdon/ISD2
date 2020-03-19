@@ -1,5 +1,5 @@
  /*
- * Name		: GPIO
+ * Name		: main
  * Author	: Marc David Jensen Blunsdon
  * Version	: 1.0
  * Copyright	: Free for all
